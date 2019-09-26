@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Humanizer" Version="2.7.2" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.5.0" />
+    <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PaymentGateway.BankProvider.ACL\PaymentGateway.BankProvider.ACL.csproj" />
+    <ProjectReference Include="..\PaymentGateway.DomainServices\PaymentGateway.DomainServices.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Domain\PaymentGateway.Domain.csproj" />
+    <ProjectReference Include="..\PaymentGateway.EventSourcing.Core\PaymentGateway.EventSourcing.Core.csproj" />
+    <ProjectReference Include="..\PaymentGateway.SharedKernel\PaymentGateway.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>
