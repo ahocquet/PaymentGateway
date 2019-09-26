@@ -6,13 +6,13 @@ using PaymentGateway.EventSourcing.Core.Aggregate;
 
 namespace PaymentGateway.Persistence
 {
-    public class Repository<TAggregateRoot, TAggregateId> : IRepository<TAggregateRoot, TAggregateId>
+    public class AggregateRepository<TAggregateRoot, TAggregateId> : IAggregateRepository<TAggregateRoot, TAggregateId>
         where TAggregateRoot : AggregateRootEntity<TAggregateId>
         where TAggregateId : IAggregateId
     {
         private readonly IEventStore _eventStore;
 
-        public Repository(IEventStore eventStore)
+        public AggregateRepository(IEventStore eventStore)
         {
             _eventStore = eventStore;
         }

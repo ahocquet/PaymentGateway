@@ -12,12 +12,12 @@ namespace PaymentGateway.ApplicationServices
 {
     public class PaymentProcessor : IProcessPayment
     {
-        private readonly IRepository<Payment, PaymentId> _paymentRepository;
+        private readonly IAggregateRepository<Payment, PaymentId> _paymentRepository;
         private readonly IPaymentService                 _paymentService;
         private readonly IAcquiringBank                  _bank;
         private readonly IProvideDateTime                _dateProvider;
 
-        public PaymentProcessor(IRepository<Payment, PaymentId> paymentRepository,
+        public PaymentProcessor(IAggregateRepository<Payment, PaymentId> paymentRepository,
                                 IPaymentService paymentService,
                                 IAcquiringBank bank,
                                 IProvideDateTime dateProvider)

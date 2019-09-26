@@ -27,7 +27,7 @@ namespace PaymentGateway.DependencyInjection
             serviceCollection.AddTransient<IEventStore, EventStore>();
             serviceCollection.AddTransient<IEventPublisher, EventPublisher>();
 
-            serviceCollection.AddTransient(typeof(IRepository<,>), typeof(Repository<,>));
+            serviceCollection.AddTransient(typeof(IAggregateRepository<,>), typeof(AggregateRepository<,>));
         }
     }
 }

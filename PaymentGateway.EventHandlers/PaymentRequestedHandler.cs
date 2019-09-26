@@ -9,7 +9,7 @@ namespace PaymentGateway.EventHandlers
     {
         public Task Handle(PaymentRequested notification, CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
+            
         }
     }
 }

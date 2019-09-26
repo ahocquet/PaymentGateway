@@ -9,7 +9,7 @@ namespace PaymentGateway.EventSourcing.Core
     /// </summary>
     /// <typeparam name="TAggregateRoot">The type of the aggregate root in this collection.</typeparam>
     /// <typeparam name="TAggregateId">The type identifier for <typeparamref name="TAggregateRoot"/></typeparam>
-    public interface IRepository<TAggregateRoot, in TAggregateId> where TAggregateId : IAggregateId
+    public interface IAggregateRepository<TAggregateRoot, in TAggregateId> where TAggregateId : IAggregateId
     {
         /// <summary>
         /// Gets the aggregate root entity associated with the specified aggregate identifier.

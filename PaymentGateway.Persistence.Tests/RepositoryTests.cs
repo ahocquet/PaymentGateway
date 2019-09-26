@@ -24,7 +24,7 @@ namespace PaymentGateway.Persistence.Tests
             // These variables are reset per unit test 
             _carId            = new CarId(Guid.NewGuid());
             _azureTableHelper = new AzureTableHelper<DynamicTableEntity>();
-            _repository       = diFixture.Container.GetRequiredService<IRepository<Car, CarId>>();
+            _repository       = diFixture.Container.GetRequiredService<IAggregateRepository<Car, CarId>>();
             _eventStoreTable  = tables[ContainerName.EventStore];
         }
 
@@ -34,7 +34,7 @@ namespace PaymentGateway.Persistence.Tests
         }
 
         private readonly AzureTableHelper<DynamicTableEntity> _azureTableHelper;
-        private readonly IRepository<Car, CarId>              _repository;
+        private readonly IAggregateRepository<Car, CarId>              _repository;
         private readonly CloudTable                           _eventStoreTable;
         private readonly CarId                                _carId;
 

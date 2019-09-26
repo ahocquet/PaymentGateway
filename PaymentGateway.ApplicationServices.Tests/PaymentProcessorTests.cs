@@ -16,7 +16,7 @@ namespace PaymentGateway.ApplicationServices.Tests
 {
     public class PaymentProcessorTests
     {
-        private readonly IRepository<Payment, PaymentId> _paymentRepo;
+        private readonly IAggregateRepository<Payment, PaymentId> _paymentRepo;
         private readonly PaymentId                       _paymentId;
         private readonly IPaymentService                 _paymentService;
         private readonly IAcquiringBank                  _bank;
@@ -32,7 +32,7 @@ namespace PaymentGateway.ApplicationServices.Tests
 
             _paymentService = Substitute.For<IPaymentService>();
             _bank           = Substitute.For<IAcquiringBank>();
-            _paymentRepo    = Substitute.For<IRepository<Payment, PaymentId>>();
+            _paymentRepo    = Substitute.For<IAggregateRepository<Payment, PaymentId>>();
             _paymentRepo.Get(Arg.Is(_paymentId)).Returns(payment);
         }
 
