@@ -1,0 +1,7 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <CustomBuildProperties>
+      <Value>IsNcrunchBuild = true</Value>
+    </CustomBuildProperties>
+  </Settings>
+</ProjectConfiguration>

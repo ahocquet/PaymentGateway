@@ -4,7 +4,6 @@ using FluentAssertions;
 using PaymentGateway.Api.Client;
 using PaymentGateway.Api.IntegrationTests.Fixtures;
 using Xunit;
-using Currency = PaymentGateway.Api.Client.Currency;
 
 namespace PaymentGateway.Api.IntegrationTests.Payment
 {
@@ -23,13 +22,7 @@ namespace PaymentGateway.Api.IntegrationTests.Payment
         public async Task Should_return_a_response_with_a_payment_view()
         {
             // Arrange
-            var command = new Command
-            {
-                CardNumber = "4111 1111 1111 1111",
-                Ccv        = 123,
-                ExpiryDate = new ExpiryDateDto {Year = 2025, Month  = 03},
-                Money      = new MoneyDto {Amount    = 10, Currency = Currency.EUR}
-            };
+            var command = SubmitCommandFactory.CreateValidCommand();
 
             // Act
             var response    = await _client.Payment_SubmitAsync(command);

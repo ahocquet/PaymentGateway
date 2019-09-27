@@ -31,7 +31,7 @@ namespace PaymentGateway.Domain.Values
 
         private static CardNumber CreateInstanceImpl(string cardNumber)
         {
-            var number = cardNumber.Replace(" ", "");
+            var number = cardNumber?.Replace(" ", "");
             var instance = new CardNumber
             {
                 Value = number
@@ -60,6 +60,7 @@ namespace PaymentGateway.Domain.Values
             public CardNumberValidator()
             {
                 RuleFor(c => c.Value)
+                   .NotEmpty()
                    .CreditCard()
                    .WithMessage("Please specify a valid credit card number");
             }

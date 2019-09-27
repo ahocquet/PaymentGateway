@@ -54,7 +54,7 @@ namespace PaymentGateway.Api.Features.Payment
 
         public class Validator : AbstractValidator<Command>
         {
-            public Validator()
+            public Validator(IProvideDateTime dateProvider)
             {
                 RuleFor(t => t.CardNumber).Custom((s, context) =>
                 {
@@ -68,7 +68,7 @@ namespace PaymentGateway.Api.Features.Payment
                 });
                 RuleFor(command => command.ExpiryDate).Custom((s, context) =>
                 {
-                    var val = ExpiryDate.Validate(s.Month, s.Year, new DateTimeProvider());
+                    var val = ExpiryDate.Validate(s.Month, s.Year, dateProvider);
                     PopulateContextFailuresFromValidationResult(val, context);
                 });
                 RuleFor(command => command.Money).Custom((s, context) =>
