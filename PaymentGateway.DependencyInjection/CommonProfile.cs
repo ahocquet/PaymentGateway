@@ -7,6 +7,7 @@ using PaymentGateway.EventSourcing.Core;
 using PaymentGateway.Infrastructure;
 using PaymentGateway.Infrastructure.Json;
 using PaymentGateway.Persistence;
+using PaymentGateway.Read.Repositories;
 using PaymentGateway.SharedKernel.Date;
 using PaymentGateway.SharedKernel.Models;
 
@@ -28,6 +29,7 @@ namespace PaymentGateway.DependencyInjection
             serviceCollection.AddTransient<IEventPublisher, EventPublisher>();
 
             serviceCollection.AddTransient(typeof(IAggregateRepository<,>), typeof(AggregateRepository<,>));
+            serviceCollection.AddTransient<IPaymentRepository, PaymentRepository>();
         }
     }
 }

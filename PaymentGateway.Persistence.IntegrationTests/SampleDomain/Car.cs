@@ -1,7 +1,7 @@
 using PaymentGateway.EventSourcing.Core.Aggregate;
 using PaymentGateway.EventSourcing.Core.Event;
 
-namespace PaymentGateway.Persistence.Tests.SampleDomain
+namespace PaymentGateway.Persistence.IntegrationTests.SampleDomain
 {
     public class Car : AggregateRootEntity<CarId>
     {

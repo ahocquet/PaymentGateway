@@ -1,48 +1,40 @@
-﻿//using System;
-//using System.Threading;
-//using System.Threading.Tasks;
-//using FluentValidation;
-//using MediatR;
-//using PaymentGateway.Domain.Values;
-//using PaymentGateway.EventSourcing.Core;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
+using PaymentGateway.Domain.Values;
+using PaymentGateway.Read.Models;
+using PaymentGateway.Read.Repositories;
 
-//namespace PaymentGateway.ApplicationServices.Features.FraudAnalysisApplication
-//{
-//    public class Get
-//    {
-//        public class Query : IRequest<Domain.Entities.FraudAnalysisApplication>
-//        {
-//            public Query(Guid id)
-//            {
-//                Id = id;
-//            }
+namespace PaymentGateway.Api.Features.Payment
+{
+    public class Get
+    {
+        public class Query : IRequest<PaymentView>
+        {
+            public Guid Id { get; set; }
+        }
 
-//            public Guid Id { get; set; }
-//        }
+        public class Validator : AbstractValidator<Query>
+        {
+            public Validator()
+            {
+                RuleFor(t => t.Id).NotEmpty();
+            }
+        }
 
-//        public class Validator : AbstractValidator<Query>
-//        {
-//            public Validator()
-//            {
-//                RuleFor(t => t.Id).NotEmpty();
-//            }
-//        }
+        public class Handler : IRequestHandler<Query, PaymentView>
+        {
+            private readonly IPaymentRepository _repository;
 
-//        public class Handler : IRequestHandler<Query, Domain.Entities.FraudAnalysisApplication>
-//        {
-//            private readonly IRepository<Domain.Entities.FraudAnalysisApplication, FraudAnalysisId> _repository;
+            public Handler(IPaymentRepository repository)
+            {
+                _repository = repository;
+            }
 
-//            public Handler(IRepository<Domain.Entities.FraudAnalysisApplication, FraudAnalysisId> repository)
-//            {
-//                _repository = repository;
-//            }
-
-//            public async Task<Domain.Entities.FraudAnalysisApplication> Handle(Query request, CancellationToken cancellationToken)
-//            {
-//                var result = await _repository.Get(new FraudAnalysisId(request.Id));
-
-//                return result;
-//            }
-//        }
-//    }
-//}
+            public Task<PaymentView> Handle(Query query, CancellationToken cancellationToken)
+                => _repository.GetById(new PaymentId(query.Id));
+        }
+    }
+}

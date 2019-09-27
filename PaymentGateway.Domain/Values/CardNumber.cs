@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using FluentValidation;
 using FluentValidation.Results;
 using PaymentGateway.EventSourcing.Core;
@@ -12,6 +13,8 @@ namespace PaymentGateway.Domain.Values
         private CardNumber()
         {
         }
+
+        public string Value { get; private set; }
 
         public static CardNumber Create(string cardNumber)
         {
@@ -36,7 +39,16 @@ namespace PaymentGateway.Domain.Values
             return instance;
         }
 
-        public string Value { get; private set; }
+        public string MaskCardNumber()
+        {
+            var lastDigits   = Value.Substring(Value.Length - 4, 4);
+            var requiredMask = new string('X', Value.Length - lastDigits.Length);
+
+            var maskedString       = string.Concat(requiredMask, lastDigits);
+            var maskedStringSpaced = Regex.Replace(maskedString, ".{4}", "$0 ");
+
+            return maskedStringSpaced.Trim();
+        }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

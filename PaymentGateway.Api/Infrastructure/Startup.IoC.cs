@@ -16,6 +16,7 @@ namespace PaymentGateway.Api.Infrastructure
             StorageProfile.Register(serviceCollection, appSettings);
             LoggingProfile.RegisterApiLogger(serviceCollection, "Api");
             MediatRProfile.Register(serviceCollection, typeof(Startup).Assembly);
+            AutoMapperProfile.Register(serviceCollection, typeof(Startup).Assembly);
         }
     }
 }

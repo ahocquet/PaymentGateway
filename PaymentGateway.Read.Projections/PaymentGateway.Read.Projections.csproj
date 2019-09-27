@@ -10,7 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PaymentGateway.Domain\PaymentGateway.Domain.csproj" />
-    <ProjectReference Include="..\PaymentGateway.EventSourcing.Core\PaymentGateway.EventSourcing.Core.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Read.Models\PaymentGateway.Read.Models.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Read.Repositories\PaymentGateway.Read.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

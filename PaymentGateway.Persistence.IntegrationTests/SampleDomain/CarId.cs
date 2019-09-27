@@ -1,7 +1,7 @@
 using System;
 using PaymentGateway.EventSourcing.Core.Aggregate;
 
-namespace PaymentGateway.Persistence.Tests.SampleDomain
+namespace PaymentGateway.Persistence.IntegrationTests.SampleDomain
 {
     public class CarId : IAggregateId
     {

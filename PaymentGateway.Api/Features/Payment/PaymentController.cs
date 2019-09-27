@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Api.Dto;
+using PaymentGateway.Read.Models;
 
 namespace PaymentGateway.Api.Features.Payment
 {
@@ -25,12 +26,11 @@ namespace PaymentGateway.Api.Features.Payment
         public async Task<PaymentRequestResponse> Submit(Submit.Command command)
             => await _mediator.Send(command);
 
-        //[HttpGet]
-        //[Route("getById/{id}")]
-        //public async Task<FraudAnalysisApplication> Get(Guid id)
-        //{
-        //    var result = await _mediator.Send(new Get.Query(id));
-        //    return result;
-        //}
+        [HttpGet]
+        [ProducesResponseType(typeof(ValidationProblemDetails), (int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(PaymentView), (int) HttpStatusCode.OK)]
+        [Route("{Id}")]
+        public async Task<PaymentView> Get([FromRoute] Get.Query command)
+            => await _mediator.Send(command);
     }
 }

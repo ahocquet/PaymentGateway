@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using PaymentGateway.EventSourcing.Core;
 
-namespace PaymentGateway.Persistence.Tests.SampleDomain
+namespace PaymentGateway.Persistence.IntegrationTests.SampleDomain
 {
     public class Distance : ValueObject
     {

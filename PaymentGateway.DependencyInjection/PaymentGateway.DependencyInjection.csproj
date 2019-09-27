@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.5" />
@@ -12,19 +13,17 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PaymentGateway.ApplicationServices\PaymentGateway.ApplicationServices.csproj" />
     <ProjectReference Include="..\PaymentGateway.EventSourcing.Core\PaymentGateway.EventSourcing.Core.csproj" />
     <ProjectReference Include="..\PaymentGateway.Persistence\PaymentGateway.Persistence.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Read.Projections\PaymentGateway.Read.Projections.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Read.Repositories\PaymentGateway.Read.Repositories.csproj" />
     <ProjectReference Include="..\PaymentGateway.SharedKernel\PaymentGateway.SharedKernel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
+  
 </Project>

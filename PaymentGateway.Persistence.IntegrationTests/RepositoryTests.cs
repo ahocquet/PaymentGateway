@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 using PaymentGateway.EventSourcing.Core;
 using PaymentGateway.Infrastructure;
-using PaymentGateway.Persistence.Tests.Fixtures;
-using PaymentGateway.Persistence.Tests.SampleDomain;
+using PaymentGateway.Persistence.IntegrationTests.Fixtures;
+using PaymentGateway.Persistence.IntegrationTests.SampleDomain;
 using PaymentGateway.SharedKernel.Constants;
+using Xunit;
 
-namespace PaymentGateway.Persistence.Tests
+namespace PaymentGateway.Persistence.IntegrationTests
 {
     [Collection(nameof(DependencyInjectionCollection))]
     [Trait("Category", "e2e")]

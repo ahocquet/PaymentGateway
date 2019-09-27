@@ -1,15 +1,15 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 using PaymentGateway.TestKernel.DependencyInjection;
+using Xunit;
 
-namespace PaymentGateway.Persistence.Tests.Fixtures
+namespace PaymentGateway.Read.Repositories.Tests.Fixtures
 {
     public class DependencyInjectionFixture : IDisposable
     {
         public DependencyInjectionFixture()
         {
-            Container = DIHelper.BuildIntegrationTestContainer();
+            Container = DIHelper.BuildUnitTestContainer();
         }
 
         public ServiceProvider Container { get; }

@@ -16,23 +16,24 @@ namespace PaymentGateway.TestKernel.DependencyInjection
         public static ServiceProvider BuildIntegrationTestContainer(ServiceCollection serviceCollection = null)
         {
             serviceCollection = serviceCollection ?? new ServiceCollection();
-            return BuildContainer(serviceCollection);
+            return BuildContainer(serviceCollection, true);
         }
 
         public static ServiceProvider BuildUnitTestContainer(ServiceCollection serviceCollection = null)
         {
             serviceCollection = serviceCollection ?? new ServiceCollection();
-            return BuildContainer(serviceCollection);
+            return BuildContainer(serviceCollection, false);
         }
 
-        private static ServiceProvider BuildContainer(IServiceCollection serviceCollection)
+        private static ServiceProvider BuildContainer(IServiceCollection serviceCollection, bool isIntegrationTests)
         {
-            var (config, appSettings) = BuildAppSettings();
+            var (config, appSettings) = isIntegrationTests ? BuildAppSettings() : BuildFakeAppSettings();
 
             RegisterTestDependencies(serviceCollection, appSettings);
             StorageProfile.Register(serviceCollection, appSettings);
             CommonProfile.Register(serviceCollection, appSettings, config);
             MediatRProfile.Register(serviceCollection);
+            AutoMapperProfile.Register(serviceCollection);
 
             return serviceCollection.BuildServiceProvider();
         }
@@ -55,8 +56,18 @@ namespace PaymentGateway.TestKernel.DependencyInjection
             var settings = new AppSettings();
             config.Bind(settings);
 
+            return (config, settings);
+        }
+
+        private static (IConfigurationRoot moqConfig, AppSettings settings) BuildFakeAppSettings()
+        {
             var configurationRoot = Substitute.For<IConfigurationRoot>();
             configurationRoot[Arg.Any<string>()].Returns("");
+
+            var settings = new AppSettings()
+            {
+                Storage = new StorageSettings()
+            };
 
             return (configurationRoot, settings);
         }

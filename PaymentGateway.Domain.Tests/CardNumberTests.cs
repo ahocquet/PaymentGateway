@@ -49,5 +49,15 @@ namespace PaymentGateway.Domain.Tests
 
             cardNumberA.Should().NotBe(cardNumberB);
         }
+
+        [Fact]
+        public void Should_mask_a_card_number()
+        {
+            var cardNumber = CardNumber.Create("4111 1111 1111 1111");
+
+            var masked         = cardNumber.MaskCardNumber();
+
+            masked.Should().Be("XXXX XXXX XXXX 1111");
+        }
     }
 }

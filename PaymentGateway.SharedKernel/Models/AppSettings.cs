@@ -15,11 +15,4 @@
     {
         public string ConnectionString { get; set; }
     }
-
-    public class SwaggerSettings
-    {
-        public string ClientId     { get; set; }
-        public string ClientSecret { get; set; }
-        public string AppName      { get; set; }
-    }
 }
