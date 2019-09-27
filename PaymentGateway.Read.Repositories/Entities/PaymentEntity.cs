@@ -7,9 +7,9 @@ namespace PaymentGateway.Read.Repositories.Entities
 {
     internal class PaymentEntity : TableEntity
     {
-        public string  CardNumber { get; set; }
-        public decimal Amount     { get; set; }
-        public string  Currency   { get; set; }
-        public string  Status     { get; set; }
+        public string CardNumber { get; set; }
+        public double Amount     { get; set; }
+        public string Currency   { get; set; }
+        public string Status     { get; set; }
     }
 }

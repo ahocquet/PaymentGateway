@@ -28,7 +28,7 @@ namespace PaymentGateway.ApplicationServices
             _dateProvider      = dateProvider;
         }
 
-        public async Task<PaymentId> CreatePayment(string cardNumber, int ccv, int expiryMonthDate, int expiryYearDate, decimal amount, Currency currency)
+        public async Task<PaymentId> CreatePayment(string cardNumber, int ccv, int expiryMonthDate, int expiryYearDate, double amount, Currency currency)
         {
             var card = CreditCard.Create(CardNumber.Create(cardNumber),
                                          ExpiryDate.Create(expiryMonthDate, expiryYearDate, _dateProvider),

@@ -4,7 +4,7 @@ namespace PaymentGateway.Api.Dto
 {
     public class MoneyDto
     {
-        public decimal  Amount   { get; set; }
+        public double   Amount   { get; set; }
         public Currency Currency { get; set; }
     }
 }

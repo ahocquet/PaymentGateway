@@ -13,7 +13,7 @@ namespace PaymentGateway.Domain.Values
         {
         }
 
-        public static Money Create(decimal amount, Currency currency)
+        public static Money Create(double amount, Currency currency)
         {
             var instance = CreateInstance(amount, currency);
             Validator.ValidateAndThrow(instance);
@@ -21,13 +21,13 @@ namespace PaymentGateway.Domain.Values
             return instance;
         }
 
-        public static ValidationResult Validate(decimal amount, Currency currency)
+        public static ValidationResult Validate(double amount, Currency currency)
         {
             var instance = CreateInstance(amount, currency);
             return Validator.Validate(instance);
         }
 
-        private static Money CreateInstance(decimal amount, Currency currency)
+        private static Money CreateInstance(double amount, Currency currency)
         {
             return new Money
             {
@@ -36,7 +36,7 @@ namespace PaymentGateway.Domain.Values
             };
         }
 
-        public decimal  Amount   { get; private set; }
+        public double   Amount   { get; private set; }
         public Currency Currency { get; private set; }
 
         protected override IEnumerable<object> GetEqualityComponents()
@@ -49,7 +49,7 @@ namespace PaymentGateway.Domain.Values
         {
             public MoneyValidator()
             {
-                RuleFor(c => c.Amount).GreaterThan(decimal.Zero)
+                RuleFor(c => c.Amount).GreaterThan(0)
                                       .WithMessage("Please specify a valid amount");
                 RuleFor(c => c.Currency).IsInEnum();
             }

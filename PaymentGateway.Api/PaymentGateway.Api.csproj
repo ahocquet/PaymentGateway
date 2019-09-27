@@ -13,8 +13,13 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.7.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
-    <PackageReference Include="NSwag.Core" Version="13.0.6" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.1.0" />
+    <PackageReference Include="NSwag.Core" Version="13.1.0" />
+    <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="13.1.0" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,5 +32,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <Target Name="NSwag" AfterTargets="Build" Condition="$(IsNcrunchBuild) != True">
+    <Copy SourceFiles="@(ReferencePath)" DestinationFolder="$(OutDir)References" />
+    <Exec Command="$(NSwagExe_Core22) run config.nswag /variables:Configuration=$(Configuration),OutDir=$(OutDir)" />
+    <RemoveDir Directories="$(OutDir)References" />
+  </Target>
 
 </Project>
