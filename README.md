@@ -26,16 +26,16 @@ That will set up the required infrastructure to execute integration tests and pl
 ## Event store
 The event store is managed by the [Streamstone]([https://github.com/yevhen/Streamstone](https://github.com/yevhen/Streamstone)) library. You can browse the event store with `Microsoft Azure Storage Explorer`, within the table named `eventstore` :
 
-![](https://i.imgur.com/xA7lKYn.png)
+![](https://i.imgur.com/pUQq5YC.png)
 
 ## Projections
 
-Projections are managed through event handler using the [MediatR]([https://github.com/jbogard/MediatR](https://github.com/jbogard/MediatR)) library.
+Projections are managed through event handlers using the [MediatR]([https://github.com/jbogard/MediatR](https://github.com/jbogard/MediatR)) library.
 
 You can browse the payment projection view with `Microsoft Azure Storage Explorer`, within the table named `payments` :
 
 
-![](https://i.imgur.com/8zeXF4x.png)
+![](https://i.imgur.com/oxjPYCM.png)
 
 ## FAQ
 
