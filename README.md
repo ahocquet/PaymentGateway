@@ -42,7 +42,7 @@ You can browse the payment projection view with `Microsoft Azure Storage Explore
 ### Why ValueObjects can't have a public constructor?
 I've chosen to embed value object within events. Events are immutable and **must** always be deserializable to load an aggregate root. On the opposite, business rules regarding validation of value objects may change over time. Therefore, if we put validation in a public constructor of a value object, we could end up not being able to deserialize older events due to validation violation in embedded value objects.
 
-They are many possibilities to overcome this problem:
+There are many possibilities to overcome this problem:
 
  - Don't use value object in events. I'm not a huge fan of this, because that means that the aggregate root must know *how* to build a value object. If the later one has a lot of parameters, that becomes easily cumbersome.
  - Use a binary serializer instead of JSON. Using a binary serializer like Protobuf or Avro would deserialize an event without calling any constructor. And it's faster. But I didn't want to add the complexity of managing proto files in this demo project.
